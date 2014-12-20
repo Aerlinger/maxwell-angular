@@ -1,0 +1,75 @@
+<!doctype html>
+<html ng-app="Maxwell">
+<head>
+  <title>Maxwell</title>
+
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+</head>
+
+<body>
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-3 col-md-2">
+      <a class="logo" href="">
+        <img src="asssets/img/whatever" alt=""/>
+      </a>
+      <ul class="nav nav-sidebar">
+        <li ng-repeat ng-class>
+          <a ng-click="">
+            {{ "Component" }}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
+      <div ng-class="" ng-repeat="">
+        <button type="button" class="close">&times</button>
+        <button type="button" class="btn btn-link" ng-click="">&times</button>
+      </div>
+
+      <hr />
+
+      <!-- CREATION FORM -->
+      <div ng-if="shouldShowCreating()">
+        <button type="button" class="btn btn-link" ng-click="startCreating()">
+          <span class="glyphicon glyphicon-plus"></span>
+          Create Bookmark
+        </button>
+        <form class="create-form" ng-show="isCreating" role="form" ng-submit="createBookmark(newBookmark)" novalidate>
+          <div class="form-group">
+            <label for="newBookmarkTitle">Bookmark Title</label>
+            <input type="text" class="form-control" id="newBookmarkTitle" ng-model="newBookmark.title" placeholder="Enter title">
+          </div>
+          <div class="form-group">
+            <label for="newBookmarkURL">Bookmark URL</label>
+            <input type="text" class="form-control" id="newBookmarkURL" ng-model="newBookmark.url" placeholder="Enter URL">
+          </div>
+          <button type="submit" class="btn btn-info btn-lg">Create</button>
+          <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelCreating()">Cancel</button>
+        </form>
+      </div>
+
+      <!-- EDITING -->
+      <div ng-if="shouldShowEditing()">
+        Editing a bookmark!
+        <button type="button" class="btn btn-default btn-lg pull-right" ng-click="cancelEditing()">Cancel</button>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+<script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/lodash/dist/lodash.js"></script>
+<script type="text/javascript" src="bower_components/angular/angular.js"></script>
+<script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+
+<script type="text/javascript" src="app/maxwell-app.js"></script>
+
+</body>
+
+</html>
