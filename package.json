@@ -1,0 +1,15 @@
+{
+  "name": "maxwell-angular",
+  "version": "1.0.0",
+  "description": "Maxwell Angular Project",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "author": "Anthony Erlinger",
+  "license": "MIT",
+  "devDependencies": {
+    "express": "^4.10.6",
+    "mocha": "^2.0.1"
+  }
+}
