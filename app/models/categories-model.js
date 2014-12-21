@@ -42,7 +42,7 @@ angular.module('maxwell.models.categories', [])
       };
 
       categoriesModel.deleteCategory = function (category) {
-        _.remove(categories, function(c) {
+        _.remove(categories, function (c) {
           return c.id == category.id;
         })
       };
