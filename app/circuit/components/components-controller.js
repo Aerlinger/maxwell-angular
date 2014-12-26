@@ -9,7 +9,7 @@ angular.module("Maxwell")
           "description": "Classical resistor",
           "parameters": [
             {
-              "name": "resistance",
+              "name": "Resistance",
               "unit": "Ohms",
               "symbol": "Ω",
               "default": 100
@@ -24,7 +24,7 @@ angular.module("Maxwell")
           "description": "Classical capacitor",
           "parameters": [
             {
-              "name": "capacitance",
+              "name": "Capacitance",
               "unit": "Farads",
               "symbol": "F",
               "default": 1e-5
@@ -39,40 +39,62 @@ angular.module("Maxwell")
           "description": "Classical inductor",
           "parameters": [
             {
-              "name": "inductance",
+              "name": "Inductance",
               "unit": "Henries",
               "symbol": "H",
               "default": 1e-5
+            },
+            {
+              name: "Internal resistance",
+              "unit": "Ohms",
+              "symbol": "Ω",
+              default: 0
             }
           ]
         }
       ];
 
+      var components = this;
+
       this.createdComponents = [];
       this.placingComponent = null;
 
-      this.isPlacingComponent = function (component) {
-        return component === this.placingComponent;
+      this.isPlacingComponent = function () {
+        return this.placingComponent != null;
       };
 
       this.setPlacingComponent = function (component) {
         this.placingComponent = component;
+        this.placingComponent.x = 0;
+        this.placingComponent.y = 0;
         this.placeComponent(component, 0, 0);
       };
 
-      this.unsetPlacingComponent = function() {
+      this.unsetPlacingComponent = function () {
         this.placingComponent = null;
       };
 
-      this.placeComponent = function(component, xPos, yPos) {
+      this.placeComponent = function (component, xPos, yPos) {
         this.createdComponents.push(component);
       };
 
-      this.moveComponent = function($event, component) {
-        //console.log($event.offsetX, $event.offsetY);
+      this.moveComponent = function ($event) {
+        if (components.isPlacingComponent()) {
+          components.placingComponent.x = $event.offsetX;
+          components.placingComponent.y = $event.offsetY;
+        }
       };
 
-      this.getPlacingComponent = function() {
+      this.getPlacingComponent = function () {
         return this.placingComponent;
       };
+
+      this.placingStyle = function () {
+        if (components.isPlacingComponent()) {
+          return {
+            left: components.getPlacingComponent().x,
+            top: components.getPlacingComponent().y
+          };
+        }
+      }
     });

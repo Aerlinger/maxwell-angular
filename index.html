@@ -28,8 +28,8 @@
     </div>
 
     <div class="col-sm-9 col-md-9 main" ng-click="components.unsetPlacingComponent()">
+      <placing-component ng-style="components.placingStyle()"></placing-component>
       <canvas class="canvas" ng-mousemove="components.moveComponent($event, null)">
-        <placing-component></placing-component>
       </canvas>
     </div>
 
@@ -45,6 +45,7 @@
   </div>
 
   <div id="edit_box" class="container-fluid">
+    <p>{{components.isPlacingComponent()}}</p>
     <p>{{components.getPlacingComponent()}}</p>
   </div>
 </div>
