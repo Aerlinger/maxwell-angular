@@ -1,0 +1,36 @@
+{
+  "version": 1,
+  "updated": "2014-12-26",
+  "components": [
+    {
+      "type": "Resistor",
+      "category": "Analog",
+      "linear": true,
+      "nodeCount": 2,
+      "description": "Classical resistor",
+      "parameters": [
+        {
+          "name": "resistance",
+          "unit": "Ohms",
+          "symbol": "Ω",
+          "default": 100
+        }
+      ]
+    },
+    {
+      "type": "Capacitor",
+      "category": "Analog",
+      "linear": true,
+      "nodeCount": 2,
+      "description": "Classical capacitor",
+      "parameters": [
+        {
+          "name": "capacitance",
+          "unit": "Farads",
+          "symbol": "F",
+          "default": 1e-5
+        }
+      ]
+    }
+  ]
+}

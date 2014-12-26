@@ -5,17 +5,63 @@
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
+  <link rel="stylesheet" href="assets/main.css"/>
+
+  <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 
 <body ng-controller="CircuitCtrl">
+<div class="maxwell" ng-controller="ComponentCtrl as components">
+  <div class="container-fluid">
+    <div class="col-sm-1 col-md-1 sidebar">
+      <a>
+        <img class="logo" src="assets/capacitor/capacitor.png" width="50" height="50">
+      </a>
 
-<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="component in components.prototypes" ng-class="{'active':components.isPlacingComponent(component)}">
+          <a ng-click="components.setPlacingComponent(component)">
+            {{component.type}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-9 col-md-9 main" ng-click="components.unsetPlacingComponent()">
+      <canvas class="canvas" ng-mousemove="components.moveComponent($event, null)">
+        <placing-component></placing-component>
+      </canvas>
+    </div>
+
+    <div class="col-sm-2 col-md-2 main">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="component in components.createdComponents">
+          <a ng-click="components.setPlacingComponent(component)">
+            {{component.type}}
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div id="edit_box" class="container-fluid">
+    <p>{{components.getPlacingComponent()}}</p>
+  </div>
+</div>
+
+
 <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+<script type="text/javascript" src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
 <script type="text/javascript" src="bower_components/lodash/dist/lodash.js"></script>
 <script type="text/javascript" src="bower_components/angular/angular.js"></script>
 <script type="text/javascript" src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
 
 <script type="text/javascript" src="app/maxwell-app.js"></script>
+<script type="text/javascript" src="app/circuit/circuit-controller.js"></script>
+<script type="text/javascript" src="app/circuit/components/components-controller.js"></script>
+
+<script type="text/javascript" src="app/circuit/placing-component-directive.js"></script>
+
 
 </body>
 </html>
