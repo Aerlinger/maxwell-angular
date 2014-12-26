@@ -1,0 +1,15 @@
+{
+  "type": "Resistor",
+  "category": "Analog",
+  "linear": true,
+  "nodeCount": 2,
+  "description": "Classical resistor",
+  "parameters": [
+    {
+      "name": "resistance",
+      "unit": "Ohms",
+      "symbol": "Ω",
+      "default": 100
+    }
+  ]
+}
