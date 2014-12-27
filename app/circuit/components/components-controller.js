@@ -75,7 +75,8 @@ angular.module("Maxwell")
       };
 
       this.placeComponent = function (component, xPos, yPos) {
-        this.createdComponents.push(component);
+        added_component = angular.copy(component);
+        this.createdComponents.push(added_component);
       };
 
       this.moveComponent = function ($event) {

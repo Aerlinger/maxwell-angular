@@ -1,14 +1,7 @@
 angular.module("Maxwell")
-    .directive('placingComponent', function ($document) {
+    .directive('placingComponent', function () {
       return {
         restrict: 'AE',
-        //transclude: true,
-        templateUrl: 'app/circuit/placing-component.tmpl.html',
-        link: function (scope, element, attrs) {
-          element.css({
-            position: 'relative',
-            cursor: 'pointer'
-          });
-        }
+        templateUrl: 'app/circuit/placing-component.tmpl.html'
       };
     });

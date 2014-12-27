@@ -10,7 +10,7 @@
   <script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script>
 </head>
 
-<body ng-controller="CircuitCtrl">
+<body ng-controller="CircuitCtrl as circuit">
 <div class="maxwell" ng-controller="ComponentCtrl as components">
   <div class="container-fluid">
     <div class="col-sm-1 col-md-1 sidebar">
@@ -27,13 +27,13 @@
       </ul>
     </div>
 
-    <div class="col-sm-9 col-md-9 main" ng-click="components.unsetPlacingComponent()">
+    <div class="col-sm-7 col-md-7 main" ng-click="components.unsetPlacingComponent()">
       <placing-component ng-style="components.placingStyle()"></placing-component>
       <canvas class="canvas" ng-mousemove="components.moveComponent($event, null)">
       </canvas>
     </div>
 
-    <div class="col-sm-2 col-md-2 main">
+    <div class="col-sm-2 col-md-2 created-components">
       <ul class="nav nav-sidebar">
         <li ng-repeat="component in components.createdComponents">
           <a ng-click="components.setPlacingComponent(component)">
@@ -42,6 +42,17 @@
         </li>
       </ul>
     </div>
+
+    <div class="col-sm-2 col-md-2 circuit-presets">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="preset in circuit.presets">
+          <a ng-click="circuit.loadPresetCircuit(preset.name)">
+            {{preset.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
   </div>
 
   <div id="edit_box" class="container-fluid">
