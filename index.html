@@ -2,6 +2,7 @@
 <html ng-app="Maxwell">
 <head>
   <title>Maxwell</title>
+  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/>
 
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css"/>
   <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap-theme.css"/>
@@ -11,7 +12,7 @@
 </head>
 
 <body ng-controller="CircuitCtrl as circuit">
-<div class="maxwell" ng-controller="ComponentCtrl as components">
+<div class="maxwell" ng-controller="ComponentCtrl as component">
   <div class="container-fluid">
     <div class="col-sm-1 col-md-1 sidebar">
       <a>
@@ -19,24 +20,24 @@
       </a>
 
       <ul class="nav nav-sidebar">
-        <li ng-repeat="component in components.prototypes" ng-class="{'active':components.isPlacingComponent(component)}">
-          <a ng-click="components.setPlacingComponent(component)">
+        <li ng-repeat="component in component.prototypes" ng-class="{'active':circuit.isPlacingComponent(component)}">
+          <a ng-click="circuit.setPlacingComponent(component)">
             {{component.type}}
           </a>
         </li>
       </ul>
     </div>
 
-    <div class="col-sm-7 col-md-7 main" ng-click="components.unsetPlacingComponent()">
-      <placing-component ng-style="components.placingStyle()"></placing-component>
-      <canvas class="canvas" ng-mousemove="components.moveComponent($event, null)">
+    <div class="col-sm-7 col-md-7 main" ng-click="circuit.unsetPlacingComponent()">
+      <placing-component ng-style="circuit.placingStyle()"></placing-component>
+      <canvas class="canvas" ng-mousemove="circuit.moveComponent($event, null)">
       </canvas>
     </div>
 
-    <div class="col-sm-2 col-md-2 created-components">
+    <div class="col-sm-2 col-md-2 created-circuit">
       <ul class="nav nav-sidebar">
-        <li ng-repeat="component in components.createdComponents">
-          <a ng-click="components.setPlacingComponent(component)">
+        <li ng-repeat="component in circuit.createdComponents">
+          <a ng-click="circuit.setPlacingComponent(component)">
             {{component.type}}
           </a>
         </li>
@@ -56,8 +57,8 @@
   </div>
 
   <div id="edit_box" class="container-fluid">
-    <p>{{components.isPlacingComponent()}}</p>
-    <p>{{components.getPlacingComponent()}}</p>
+    <p>{{circuit.isPlacingComponent()}}</p>
+    <p>{{circuit.getPlacingComponent()}}</p>
   </div>
 </div>
 

@@ -41,7 +41,7 @@ angular.module("circuit", [
                     "name": "Resistance",
                     "unit": "Ohms",
                     "symbol": "Ω",
-                    "default": 100
+                    "default_value": 100
                   }
                 ]
               }
@@ -50,17 +50,61 @@ angular.module("circuit", [
         }
       ];
 
+      circuit.createdComponents = [];
+      circuit.placingComponent = null;
       circuit.editingComponent = null;
 
-      this.loadPresetCircuit = function(presetName) {
+      // TODO: Rename startPlacingComponent
+      circuit.setPlacingComponent = function (component) {
+        circuit.placingComponent = component;
+        circuit.placingComponent.x = 0;
+        circuit.placingComponent.y = 0;
+        circuit.placeComponent(component, 0, 0);
+      };
+
+      // TODO: Rename cancelPlacingComponent
+      circuit.unsetPlacingComponent = function () {
+        circuit.placingComponent = null;
+      };
+
+      circuit.placeComponent = function (component, xPos, yPos) {
+        added_component = angular.copy(component);
+        circuit.createdComponents.push(added_component);
+      };
+
+      circuit.moveComponent = function ($event) {
+        if (circuit.isPlacingComponent()) {
+          circuit.placingComponent.x = $event.offsetX;
+          circuit.placingComponent.y = $event.offsetY;
+        }
+      };
+
+      circuit.placingStyle = function () {
+        if (circuit.isPlacingComponent()) {
+          return {
+            left: circuit.getPlacingComponent().x,
+            top: circuit.getPlacingComponent().y
+          };
+        }
+      };
+
+      circuit.getPlacingComponent = function () {
+        return circuit.placingComponent;
+      };
+
+      circuit.isPlacingComponent = function () {
+        return circuit.placingComponent != null;
+      };
+
+      circuit.loadPresetCircuit = function(presetName) {
         circuit.activeCircuitName = presetName;
       };
 
-      this.setEditingComponent = function (component) {
+      circuit.setEditingComponent = function (component) {
         circuit.editingComponent = component;
       };
 
-      this.isEditing = function () {
+      circuit.isEditing = function () {
         return circuit.editingComponent != null;
       };
 
