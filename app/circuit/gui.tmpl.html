@@ -1,0 +1,49 @@
+<div class="maxwell">
+  <div class="container-fluid">
+    <div class="col-sm-1 col-md-1 sidebar">
+      <a>
+        <img class="logo" src="assets/capacitor/capacitor.png" width="50" height="50">
+      </a>
+
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="component in circuit.prototypes" ng-class="{'active':circuit.isPlacingComponent(component)}">
+          <a ng-click="circuit.setPlacingComponent(component)">
+            {{component.type}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-7 col-md-7 main" ng-click="circuit.unsetPlacingComponent()">
+      <placing-component ng-style="circuit.placingStyle()"></placing-component>
+      <canvas class="canvas" ng-mousemove="circuit.moveComponent($event, null)">
+      </canvas>
+    </div>
+
+    <div class="col-sm-2 col-md-2 created-circuit">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="component in circuit.createdComponents">
+          <a ng-click="circuit.setPlacingComponent(component)">
+            {{component.type}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+    <div class="col-sm-2 col-md-2 circuit-presets">
+      <ul class="nav nav-sidebar">
+        <li ng-repeat="preset in circuit.presets">
+          <a ng-click="circuit.loadPresetCircuit(preset.name)">
+            {{preset.name}}
+          </a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div id="edit_box" class="container-fluid">
+    <p>{{circuit.isPlacingComponent()}}</p>
+    <p>{{circuit.getPlacingComponent()}}</p>
+  </div>
+</div>
