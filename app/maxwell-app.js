@@ -1,1 +1,4 @@
-angular.module('Maxwell', []);
+angular.module('Maxwell', [
+    'components',
+    'circuit'
+]);

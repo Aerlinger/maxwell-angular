@@ -1,4 +1,4 @@
-angular.module("Maxwell", [
+angular.module("circuit", [
   'ui.router'
 ])
     .config(function ($stateProvider) {

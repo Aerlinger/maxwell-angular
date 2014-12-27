@@ -1,4 +1,4 @@
-angular.module("Maxwell")
+angular.module("components", [])
     .controller("ComponentCtrl", function () {
       this.prototypes = [
         {
